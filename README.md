@@ -62,52 +62,64 @@ Victoria-hospital/
 
 ## ⚙️ Prerequisites
 
-Install:
+Install the following:
 
 * Node.js
 * npm
 * Git
-* Expo Go (mobile)
-* MongoDB Atlas (or local DB)
+* Expo Go (mobile app)
+* MongoDB Atlas (or local MongoDB)
 
 ---
 
-## 🛠 Backend Setup
+## 🚀 How to Run the Project
+
+---
+
+## 1️⃣ Backend Setup
 
 ```bash
 cd backend
 npm install
 ```
 
-Create `.env`:
+### Create `.env` file
 
 ```bash
 cp .env.example .env
 ```
 
-👉 Windows PowerShell:
+👉 For Windows PowerShell:
 
 ```powershell
 Copy-Item .env.example .env
 ```
 
-Update `.env`:
+### Update `.env`
 
 ```
 PORT=5000
-MONGO_URI=your_mongodb_connection
-JWT_SECRET=your_secret
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
 ```
 
-Run backend:
+### Run backend
 
 ```bash
 npm run dev
 ```
 
+Backend runs at:
+
+```
+http://localhost:5000
+```
+
 ---
 
-## 📱 Frontend Setup
+## 2️⃣ Frontend Setup (Mobile App)
+
+Open a new terminal:
 
 ```bash
 cd frontend
@@ -115,206 +127,85 @@ npm install
 npx expo start
 ```
 
-* Open Expo Go
-* Scan QR code
-* Same WiFi required
+* Open **Expo Go** on your phone
+* Scan the QR code
+* Make sure phone & PC are on same WiFi
 
 ---
 
 ## 🌐 API Configuration (IMPORTANT)
 
-File:
+Edit file:
 
 ```
 frontend/services/api.js
 ```
 
+Set your local IP address:
+
 ```js
-import axios from "axios";
-
-const API = axios.create({
-  baseURL: "http://YOUR_IP:5000/api",
-});
-
-export default API;
+baseURL: "http://YOUR_IP:5000/api"
 ```
 
-❌ Do NOT use:
+Example:
 
 ```
-localhost
+http://192.168.1.10:5000/api
 ```
 
-✅ Use:
+❌ Do NOT use `localhost`
+✅ Always use your PC IP address
 
-```
-192.168.x.x
+---
+
+## 🔄 Update Project (Team Members)
+
+```bash
+git pull origin main
 ```
 
 ---
 
-## 👥 Team Setup
-
-```bash
-git clone https://github.com/ChamiduPrabodya/Victoria-hospital.git
-cd Victoria-hospital
-```
-
-### Backend
-
-```bash
-cd backend
-npm install
-cp .env.example .env
-npm run dev
-```
-
-### Frontend
-
-```bash
-cd frontend
-npm install
-npx expo start
-```
-
----
-
-## 🔄 Git Workflow
-
-### Check changes
+## 🛠 Git Commands
 
 ```bash
 git status
-```
-
-### Add files
-
-```bash
 git add .
-```
-
-### Commit
-
-```bash
-git commit -m "message"
-```
-
-### Push
-
-```bash
+git commit -m "your message"
 git push origin main
 ```
 
-### Pull updates
-
-```bash
-git pull origin main
-```
-
 ---
 
-## ⚠️ Important Git Notes
+## ⚠️ Important Notes
 
-### ❌ Empty folders not tracked
-
-Fix:
-
-```powershell
-New-Item backend/config/.gitkeep -ItemType File
-New-Item backend/controllers/.gitkeep -ItemType File
-New-Item backend/middleware/.gitkeep -ItemType File
-New-Item backend/models/.gitkeep -ItemType File
-New-Item backend/routes/.gitkeep -ItemType File
-New-Item backend/uploads/.gitkeep -ItemType File
-New-Item backend/utils/.gitkeep -ItemType File
-```
-
-Then:
-
-```bash
-git add .
-git commit -m "Add folders"
-git push
-```
-
----
-
-## ❗ Common Problems
-
-### nothing to commit
-
-→ No new files OR only empty folders
-
-### not a git repository
-
-→ You are outside project folder
-
-### touch not working
-
-→ Use PowerShell:
-
-```powershell
-New-Item filename -ItemType File
-```
-
-### friend can't see update
-
-→ Run:
-
-```bash
-git push
-```
-
-Friend:
-
-```bash
-git pull origin main
-```
-
----
-
-## 📌 .gitignore
-
-```
-node_modules/
-.env
-.expo/
-.vscode/
-```
+* Do NOT upload `.env`
+* Do NOT upload `node_modules`
+* Use `.env.example`
+* Empty folders will NOT appear in Git (use `.gitkeep` if needed)
 
 ---
 
 ## 🔥 Features
 
-* Authentication (JWT)
-* Role-based access
-* Patient management
-* Doctor management
-* Appointment booking
-* Department management
-* Medical records
+* User Authentication (JWT)
+* Role-based access (Admin/User)
+* Patient Management
+* Doctor Management
+* Appointment Booking
+* Department Management
+* Medical Records
 
 ---
 
-## 🧠 Workflow
+## 🌍 Deployment (Final Demo)
 
-```bash
-git pull origin main
-git add .
-git commit -m "update"
-git push
-```
-
----
-
-## 🚀 Deployment
-
-* Backend → Render / Railway
-* DB → MongoDB Atlas
-* App → Connect to live API
+* Backend → Render / Railway / AWS
+* Database → MongoDB Atlas
+* Mobile App → Connect to deployed API
 
 ---
 
 ## 📄 License
 
-Academic project only
+This project is for academic purposes.
