@@ -1,125 +1,77 @@
-# 🏥 Victoria Hospital Appointment App
+# Victoria Hospital App (Expo + Node.js)
 
-A full-stack mobile application for hospital appointment management.
+This repo contains a React Native (Expo) mobile app (`frontend/`) and a simple Node.js/Express backend (`backend/`).
 
----
+Note: Some screens and features are currently placeholders (work in progress).
 
-## 🚀 Tech Stack
-
-* 📱 Frontend: React Native (Expo)
-* 🌐 Backend: Node.js + Express.js
-* 🗄️ Database: MongoDB
-* 🔐 Authentication: JWT
-
----
-
-## 🔗 Repository
+## Repository
 
 ```bash
 git clone https://github.com/ChamiduPrabodya/Victoria-hospital.git
 cd Victoria-hospital
 ```
 
----
-
-## 📁 Project Structure
+## Project structure
 
 ```
 Victoria-hospital/
-│
 ├── backend/
-│   ├── config/
-│   ├── controllers/
-│   ├── middleware/
-│   ├── models/
-│   ├── routes/
-│   ├── uploads/
-│   ├── utils/
 │   ├── .env.example
 │   ├── package.json
 │   └── server.js
-│
-├── frontend/
-│   ├── assets/
-│   ├── components/
-│   ├── context/
-│   ├── navigation/
-│   ├── screens/
-│   ├── services/
-│   ├── utils/
-│   ├── App.js
-│   ├── app.json
-│   ├── babel.config.js
-│   ├── eslint.config.js
-│   └── package.json
-│
-├── .gitignore
-├── package.json
-└── README.md
+└── frontend/
+    ├── App.js
+    ├── app.json
+    ├── package.json
+    └── src/
+        ├── assets/
+        ├── components/
+        ├── context/
+        ├── navigation/
+        ├── screens/
+        ├── services/
+        ├── utils/
+        └── config/
 ```
 
----
+## Prerequisites
 
-## ⚙️ Prerequisites
+- Node.js (LTS recommended)
+- Git
+- Expo Go app (Android/iOS) to run on a real device
 
-Install the following:
+Windows PowerShell note: if you get “running scripts is disabled”, use `npm.cmd` instead of `npm`.
 
-* Node.js
-* npm
-* Git
-* Expo Go (mobile app)
-* MongoDB Atlas (or local MongoDB)
-
----
-
-## 🚀 How to Run the Project
-
----
-
-## 1️⃣ Backend Setup
+## Run backend (optional)
 
 ```bash
 cd backend
 npm install
+npm run dev
 ```
 
-### Create `.env` file
+Default backend URL:
+
+- `http://localhost:3000/health`
+
+### Configure backend port (optional)
+
+Create `.env` from `.env.example`:
 
 ```bash
+cd backend
 cp .env.example .env
 ```
 
-👉 For Windows PowerShell:
+Windows PowerShell:
 
 ```powershell
 Copy-Item .env.example .env
 ```
 
-### Update `.env`
+Then set `PORT=3000` (or any free port).
 
-```
-PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_secret_key
-```
-
-### Run backend
-
-```bash
-npm run dev
-```
-
-Backend runs at:
-
-```
-http://localhost:5000
-```
-
----
-
-## 2️⃣ Frontend Setup (Mobile App)
-
-Open a new terminal:
+## Run frontend (Expo Go)
 
 ```bash
 cd frontend
@@ -127,85 +79,65 @@ npm install
 npx expo start
 ```
 
-* Open **Expo Go** on your phone
-* Scan the QR code
-* Make sure phone & PC are on same WiFi
+Then:
 
----
+- Open Expo Go on your phone
+- Scan the QR code
+- Use the same Wi‑Fi network (recommended)
 
-## 🌐 API Configuration (IMPORTANT)
+If you are on a different network, try:
 
-Edit file:
-
-```
-frontend/services/api.js
+```bash
+npx expo start --tunnel
 ```
 
-Set your local IP address:
+## API base URL (important for Expo Go)
 
-```js
-baseURL: "http://YOUR_IP:5000/api"
+The app reads `EXPO_PUBLIC_API_BASE_URL` in `frontend/src/services/api.js`.
+
+On a real phone, do not use `localhost` for your backend URL. Use your PC’s LAN IP.
+
+Example (replace with your PC IP):
+
+- `http://192.168.1.10:3000`
+
+macOS/Linux:
+
+```bash
+EXPO_PUBLIC_API_BASE_URL="http://192.168.1.10:3000" npx expo start
 ```
 
-Example:
+Windows PowerShell:
 
+```powershell
+$env:EXPO_PUBLIC_API_BASE_URL="http://192.168.1.10:3000"; npx expo start
 ```
-http://192.168.1.10:5000/api
-```
 
-❌ Do NOT use `localhost`
-✅ Always use your PC IP address
+## Current app screens / functions
 
----
+- Bottom tabs: `Home`, `Explore`
+- Public screen example: `Login`
+- Admin screen example: `AdminHome`
+- Backend example endpoint: `GET /health`
 
-## 🔄 Update Project (Team Members)
+## Team workflow
+
+Update your local copy:
 
 ```bash
 git pull origin main
 ```
 
----
-
-## 🛠 Git Commands
+Common git commands:
 
 ```bash
 git status
 git add .
-git commit -m "your message"
+git commit -m "message"
 git push origin main
 ```
 
----
+## Important notes
 
-## ⚠️ Important Notes
-
-* Do NOT upload `.env`
-* Do NOT upload `node_modules`
-* Use `.env.example`
-* Empty folders will NOT appear in Git (use `.gitkeep` if needed)
-
----
-
-## 🔥 Features
-
-* User Authentication (JWT)
-* Role-based access (Admin/User)
-* Patient Management
-* Doctor Management
-* Appointment Booking
-* Department Management
-* Medical Records
-
----
-
-## 🌍 Deployment (Final Demo)
-
-* Backend → Render / Railway / AWS
-* Database → MongoDB Atlas
-* Mobile App → Connect to deployed API
-
----
-
-## 📄 License
-
-This project is for academic purposes.
+- Do not commit `node_modules/` (already ignored)
+- Do not commit real secrets in `.env` (already ignored)
